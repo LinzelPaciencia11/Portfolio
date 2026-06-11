@@ -48,7 +48,7 @@ function ProfileCard() {
   }, [])
 
   return (
-    <div className="relative flex items-center justify-center" style={{ width: 296, height: 480 }}>
+    <div className="relative flex items-center justify-center w-full max-w-[296px] mx-auto" style={{ minHeight: 480 }}>
       <motion.div
         drag
         dragConstraints={{ left: -70, right: 70, top: -70, bottom: 70 }}
@@ -62,12 +62,12 @@ function ProfileCard() {
           : { y: { duration: 3.8, repeat: Infinity, ease: 'easeInOut' }, scale: { duration: 0.2 } }
         }
         whileHover={isDragging ? {} : { scale: 1.02 }}
-        style={{ cursor: isDragging ? 'grabbing' : 'grab', width: 288 }}
+        style={{ cursor: isDragging ? 'grabbing' : 'grab', width: '100%' }}
       >
         <SpinningBorderCard>
           {/* Name + role */}
           <div className="px-6 pt-7 pb-4 text-center">
-            <h3 className="text-white font-bold text-xl leading-tight">Linzel Paciencia</h3>
+            <h3 className="text-white font-bold text-xl leading-tight">Linzel Marie P. Paciencia</h3>
             <p className="text-violet-400 text-xs mt-1 font-medium tracking-wide">Full Stack Developer</p>
           </div>
 
@@ -140,8 +140,8 @@ function ProfileCard() {
 
 export default function Hero() {
   return (
-    <section id="hero" className="flex items-center px-8 pt-28 pb-16 overflow-hidden">
-      <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-10 items-center">
+    <section id="hero" className="flex items-center px-4 sm:px-8 pt-28 pb-16 overflow-hidden">
+      <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-6 md:gap-10 items-center">
 
         {/* Left — text */}
         <div>
@@ -171,11 +171,11 @@ export default function Hero() {
           </motion.p>
 
           <BlurText
-            text="Linzel Paciencia"
+            text="Linzel Marie"
             delay={100}
             animateBy="words"
             direction="top"
-            className="text-white font-bold text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight justify-start mb-6"
+            className="text-white font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight justify-start mb-6"
             stepDuration={0.5}
           />
 
@@ -197,12 +197,13 @@ export default function Hero() {
             className="flex gap-3 flex-wrap"
           >
             {[
-              { label: 'Download CV', href: 'mailto:paciencialinzel@gmail.com', primary: true },
+              { label: 'Download CV', href: '/PACIENCIA-CV.pdf', download: 'PACIENCIA-CV.pdf', primary: true },
               { label: 'Explore My Projects', href: '#projects', primary: false },
             ].map(btn => (
               <motion.a
                 key={btn.label}
                 href={btn.href}
+                download={btn.download || undefined}
                 className="px-6 py-2.5 rounded-lg text-sm font-semibold text-white"
                 style={btn.primary
                   ? { background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)' }

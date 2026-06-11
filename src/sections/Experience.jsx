@@ -1,6 +1,9 @@
 import { motion } from 'motion/react'
 import { Badge } from '../components/ui/badge'
 import FadeIn from '../components/FadeIn'
+import SpotlightCard from '../components/SpotlightCard'
+import sprobeImg from '../assets/sprobe.jpg'
+import clientImg from '../assets/client.jpg'
 
 const experiences = [
   {
@@ -8,6 +11,7 @@ const experiences = [
     role: 'Full Stack Developer Intern',
     period: 'Feb 2026 – May 2026',
     type: 'Internship',
+    logo: sprobeImg,
     bullets: [
       'Managed deployment pipelines and CI/CD workflows using Vercel and GitHub.',
       'Implemented a live analytics pipeline using Supabase Edge Functions and Apache Iceberg.',
@@ -22,6 +26,7 @@ const experiences = [
     role: 'Virtual Assistant & Writer',
     period: 'Various',
     type: 'Professional',
+    logo: clientImg,
     bullets: [
       'Conducted online research and information gathering for international clients.',
       'Created written content, reports, and documentation.',
@@ -31,22 +36,17 @@ const experiences = [
   },
 ]
 
-const cardStyle = {
-  background: 'rgba(15,10,30,0.7)',
-  border: '1px solid rgba(139,92,246,0.2)',
-  backdropFilter: 'blur(8px)',
-}
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 px-8">
+    <section id="experience" className="py-12 sm:py-16 md:py-20 px-4 sm:px-8">
       <div className="max-w-6xl mx-auto">
         <FadeIn>
           <p className="text-violet-400 text-xs tracking-widest uppercase mb-2 font-semibold">Experience</p>
           <h2 className="text-white text-4xl font-bold mb-10">Work Experience</h2>
         </FadeIn>
 
-        <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
           {experiences.map((exp, i) => (
             <motion.div
               key={exp.role}
@@ -54,19 +54,28 @@ export default function Experience() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.6, delay: i * 0.15, ease: 'easeOut' }}
-              className="rounded-xl p-6"
-              style={cardStyle}
             >
+            <SpotlightCard className="p-6 h-full">
               <div className="flex flex-wrap items-start justify-between gap-3 mb-5">
-                <div>
-                  <span
-                    className="text-xs font-semibold px-2.5 py-1 rounded-md"
-                    style={{ background: 'rgba(139,92,246,0.2)', color: '#c4b5fd', border: '1px solid rgba(139,92,246,0.3)' }}
-                  >
-                    {exp.type}
-                  </span>
-                  <h3 className="text-white font-bold text-lg mt-2">{exp.role}</h3>
-                  <p className="text-zinc-400 text-sm">{exp.company}</p>
+                <div className="flex items-start gap-3">
+                  {exp.logo && (
+                    <img
+                      src={exp.logo}
+                      alt={exp.company}
+                      className="w-12 h-12 rounded-xl object-cover shrink-0 mt-0.5" loading="lazy"
+                      style={{ border: '1px solid rgba(139,92,246,0.25)' }}
+                    />
+                  )}
+                  <div>
+                    <span
+                      className="text-xs font-semibold px-2.5 py-1 rounded-md"
+                      style={{ background: 'rgba(139,92,246,0.2)', color: '#c4b5fd', border: '1px solid rgba(139,92,246,0.3)' }}
+                    >
+                      {exp.type}
+                    </span>
+                    <h3 className="text-white font-bold text-lg mt-2">{exp.role}</h3>
+                    <p className="text-zinc-400 text-sm">{exp.company}</p>
+                  </div>
                 </div>
                 <span className="text-xs text-zinc-500 border border-zinc-700 rounded-md px-2.5 py-1 bg-zinc-900/50">
                   {exp.period}
@@ -92,6 +101,7 @@ export default function Experience() {
               <div className="flex flex-wrap gap-1.5 pt-4 border-t border-violet-900/30">
                 {exp.tags.map(tag => <Badge key={tag}>{tag}</Badge>)}
               </div>
+            </SpotlightCard>
             </motion.div>
           ))}
         </div>

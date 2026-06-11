@@ -19,7 +19,7 @@ const cardStyle = {
 
 export default function Certificates() {
   return (
-    <section id="certificates" className="py-20 px-8">
+    <section id="certificates" className="py-12 sm:py-16 md:py-20 px-4 sm:px-8">
       <div className="max-w-6xl mx-auto">
         <p className="text-violet-400 text-xs tracking-widest uppercase mb-2 font-semibold">Certificates</p>
         <h2 className="text-white text-4xl font-bold mb-10">Achievements & Awards</h2>

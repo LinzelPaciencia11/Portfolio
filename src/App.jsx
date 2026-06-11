@@ -1,13 +1,22 @@
-import DotGrid from './components/DotGrid'
+import { lazy, Suspense } from 'react'
+import DotField from './components/DotField'
 import Nav from './components/Nav'
 import Hero from './sections/Hero'
 import About from './sections/About'
 import Skills from './sections/Skills'
-import Experience from './sections/Experience'
-import Projects from './sections/Projects'
-import Education from './sections/Education'
-import Certificates from './sections/Certificates'
-import Contact from './sections/Contact'
+import {
+  ProjectsSkeleton,
+  ExperienceSkeleton,
+  EducationSkeleton,
+  CertificatesSkeleton,
+} from './components/skeletons'
+
+const Experience = lazy(() => import('./sections/Experience'))
+const Projects = lazy(() => import('./sections/Projects'))
+const Branding = lazy(() => import('./sections/Branding'))
+const Education = lazy(() => import('./sections/Education'))
+const Certificates = lazy(() => import('./sections/Certificates'))
+const Contact = lazy(() => import('./sections/Contact'))
 
 function App() {
   return (
@@ -24,16 +33,17 @@ function App() {
             `,
           }}
         />
-        {/* Dot grid at 50% opacity */}
+        {/* Dot field at 50% opacity */}
         <div className="absolute inset-0 opacity-50">
-          <DotGrid
-            dotSize={5}
-            gap={26}
-            baseColor="#2d2d2d"
-            activeColor="#ffffff"
-            proximity={130}
-            shockRadius={200}
-            shockStrength={4}
+          <DotField
+            dotRadius={5}
+            dotSpacing={23}
+            gradientFrom="rgba(45, 45, 45, 0.9)"
+            gradientTo="rgba(70, 70, 70, 0.7)"
+            glowColor="#0a0a0f"
+            cursorRadius={180}
+            bulgeOnly={true}
+            bulgeStrength={60}
           />
         </div>
       </div>
@@ -43,11 +53,24 @@ function App() {
         <Hero />
         <About />
         <Skills />
-        <Experience />
-        <Projects />
-        <Education />
-        <Certificates />
-        <Contact />
+        <Suspense fallback={<ExperienceSkeleton />}>
+          <Experience />
+        </Suspense>
+        <Suspense fallback={<ProjectsSkeleton />}>
+          <Projects />
+        </Suspense>
+        <Suspense fallback={<div className="py-20" />}>
+          <Branding />
+        </Suspense>
+        <Suspense fallback={<EducationSkeleton />}>
+          <Education />
+        </Suspense>
+        <Suspense fallback={<CertificatesSkeleton />}>
+          <Certificates />
+        </Suspense>
+        <Suspense fallback={<div className="py-20" />}>
+          <Contact />
+        </Suspense>
       </div>
     </>
   )

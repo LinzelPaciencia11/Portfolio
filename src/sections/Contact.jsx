@@ -6,7 +6,7 @@ const cardStyle = {
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 px-8 pb-24">
+    <section id="contact" className="py-12 sm:py-16 md:py-20 px-4 sm:px-8 pb-16">
       <div className="max-w-6xl mx-auto">
         <p className="text-violet-400 text-xs tracking-widest uppercase mb-2 font-semibold">Contact</p>
         <h2 className="text-white text-4xl font-bold mb-4">Let's Connect</h2>
@@ -16,7 +16,7 @@ export default function Contact() {
 
         <a
           href="mailto:paciencialinzel@gmail.com"
-          className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-bold text-white transition-all duration-200 mb-16"
+          className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-bold text-white transition-all duration-200 mb-8"
           style={{
             background: 'linear-gradient(135deg, #7c3aed, #6d28d9)',
             boxShadow: '0 0 30px rgba(139,92,246,0.35)',
@@ -32,7 +32,7 @@ export default function Contact() {
         </a>
 
         <p className="text-zinc-600 text-xs uppercase tracking-widest mb-4">References</p>
-        <div className="grid sm:grid-cols-2 gap-3 mb-16">
+        <div className="grid sm:grid-cols-2 gap-3 mb-8">
           <div className="rounded-xl p-5" style={cardStyle}>
             <p className="text-white font-semibold text-sm">Paul S. Ngujo</p>
             <p className="text-zinc-500 text-xs mt-1 leading-relaxed">Lab Supervisor · Dept. Head · College Instructor · Capstone Adviser</p>
