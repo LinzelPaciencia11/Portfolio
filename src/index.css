@@ -1,0 +1,21 @@
+
+@import "tailwindcss";
+@import "./App.css";
+
+:root {
+  font: 16px/160% system-ui, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: #0a0a0f;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100svh;
+}

@@ -1,0 +1,4 @@
+/* portfolio custom styles – Tailwind handles the rest */
+html {
+  scroll-behavior: smooth;
+}
