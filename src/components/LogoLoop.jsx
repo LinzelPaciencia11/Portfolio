@@ -2,7 +2,7 @@ function LogoItem({ name, iconUrl }) {
   return (
     <div
       className="flex items-center gap-2.5 px-5 py-2 rounded-xl mx-2 shrink-0"
-      style={{ background: 'rgba(139,92,246,0.07)', border: '1px solid rgba(139,92,246,0.15)' }}
+      style={{ background: 'var(--wash)', border: '1px solid var(--line)' }}
     >
       {iconUrl && (
         <img
@@ -13,7 +13,7 @@ function LogoItem({ name, iconUrl }) {
           className="object-contain"
         />
       )}
-      <span className="text-zinc-300 text-sm font-medium whitespace-nowrap">{name}</span>
+      <span className="text-muted text-sm font-medium whitespace-nowrap">{name}</span>
     </div>
   )
 }

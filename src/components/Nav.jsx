@@ -1,24 +1,40 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
+import { HouseHeart, Info, WandSparkles, Boxes, FolderBookmark, UserStar } from 'lucide-react'
+import Dock from './Dock'
 
 const links = [
-  { href: '#hero',       label: 'Home' },
-  { href: '#about',      label: 'About' },
-  { href: '#skills',     label: 'Skills' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#projects',   label: 'Projects' },
-  { href: '#contact',    label: 'Contact' },
+  { href: '#hero',       label: 'Intro',      icon: HouseHeart },
+  { href: '#about',      label: 'About',      icon: Info },
+  { href: '#skills',     label: 'Skills',     icon: WandSparkles },
+  { href: '#experience', label: 'Experience', icon: Boxes },
+  { href: '#projects',   label: 'Projects',   icon: FolderBookmark },
+  { href: '#contact',    label: 'Contact',    icon: UserStar },
 ]
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [open, setOpen] = useState(false)
+  const lastY = useRef(0)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
+    const onScroll = () => {
+      const y = window.scrollY
+      setScrolled(y > 20)
+
+      if (open) {
+        setHidden(false)
+      } else if (y > lastY.current && y > 80) {
+        setHidden(true)
+      } else {
+        setHidden(false)
+      }
+      lastY.current = y
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [open])
 
   // Close menu on resize to md+
   useEffect(() => {
@@ -29,32 +45,22 @@ export default function Nav() {
 
   return (
     <>
-      <nav
-        className="fixed top-0 left-0 right-0 z-50"
+      <motion.nav
+        animate={{ y: hidden ? 'calc(-100% - 1rem)' : '0%' }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className="fixed top-4 left-0 right-0 z-50"
         style={{
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          background: scrolled || open ? 'rgba(10, 10, 15, 0.95)' : 'rgba(10, 10, 15, 0)',
-          borderBottom: scrolled || open ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent',
-          transition: 'background 300ms ease, border-color 300ms ease',
+          backdropFilter: scrolled || open ? 'blur(12px)' : 'none',
+          WebkitBackdropFilter: scrolled || open ? 'blur(12px)' : 'none',
+          background: scrolled || open ? 'rgba(252, 250, 251, 0.9)' : 'transparent',
+          transition: 'background 300ms ease',
         }}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
-          <span className="text-white font-bold text-lg tracking-tight">Portfolio</span>
-
-          {/* Desktop links */}
-          <ul className="hidden md:flex items-center gap-8">
-            {links.map(l => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  className="text-zinc-300 hover:text-white text-sm transition-colors duration-200 font-medium"
-                >
-                  {l.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-end relative">
+          {/* Desktop dock, centered in the topbar */}
+          <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <Dock items={links} />
+          </div>
 
           {/* Hamburger */}
           <button
@@ -64,17 +70,17 @@ export default function Nav() {
           >
             <motion.span
               animate={open ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-white origin-center"
+              className="block w-6 h-0.5 bg-ink origin-center"
               transition={{ duration: 0.2 }}
             />
             <motion.span
               animate={open ? { opacity: 0 } : { opacity: 1 }}
-              className="block w-6 h-0.5 bg-white"
+              className="block w-6 h-0.5 bg-ink"
               transition={{ duration: 0.15 }}
             />
             <motion.span
               animate={open ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-white origin-center"
+              className="block w-6 h-0.5 bg-ink origin-center"
               transition={{ duration: 0.2 }}
             />
           </button>
@@ -89,15 +95,16 @@ export default function Nav() {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
               className="md:hidden overflow-hidden flex flex-col px-4 pb-4 gap-1"
-              style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+              style={{ borderTop: '1px solid var(--line)' }}
             >
               {links.map(l => (
                 <li key={l.href}>
                   <a
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="block py-2.5 px-3 rounded-lg text-zinc-300 hover:text-white hover:bg-white/5 text-sm font-medium transition-colors"
+                    className="flex items-center gap-3 py-2.5 px-3 rounded-lg text-muted hover:text-ink hover:bg-wash text-sm font-medium transition-colors"
                   >
+                    <l.icon className="w-4 h-4" strokeWidth={1.75} />
                     {l.label}
                   </a>
                 </li>
@@ -105,7 +112,7 @@ export default function Nav() {
             </motion.ul>
           )}
         </AnimatePresence>
-      </nav>
+      </motion.nav>
     </>
   )
 }

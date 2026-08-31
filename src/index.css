@@ -2,17 +2,33 @@
 @import "tailwindcss";
 @import "./App.css";
 
+@theme {
+  --color-paper: #FCFAFB;
+  --color-wash: #F4ECF1;
+  --color-ink: #2A1E2E;
+  --color-muted: #7C6D7A;
+  --color-accent: #C4557E;
+  --color-line: #E7DBE3;
+}
+
 :root {
-  font: 16px/160% system-ui, 'Segoe UI', Roboto, sans-serif;
+  --paper: #FCFAFB;
+  --wash: #F4ECF1;
+  --ink: #2A1E2E;
+  --muted: #7C6D7A;
+  --accent: #C4557E;
+  --line: #E7DBE3;
+
+  font: 16px/160% 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
   margin: 0;
-  background: #0a0a0f;
-  color: #fff;
+  background: var(--paper);
+  color: var(--ink);
   overflow-x: hidden;
 }
 

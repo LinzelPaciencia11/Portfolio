@@ -38,10 +38,10 @@ const education = [
 export default function Education() {
   return (
     <section id="education" className="py-12 sm:py-16 md:py-20 px-4 sm:px-8">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <FadeIn>
-          <p className="text-violet-400 text-xs tracking-widest uppercase mb-2 font-semibold">Education</p>
-          <h2 className="text-white text-4xl font-bold mb-10">Academic Background</h2>
+          <p className="text-accent text-xs tracking-widest uppercase mb-2 font-medium">Education</p>
+          <h2 className="text-ink text-4xl font-semibold mb-10">Academic Background</h2>
         </FadeIn>
 
         <Stepper steps={education} />

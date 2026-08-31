@@ -20,7 +20,7 @@ function PhotoCard({ img, label }) {
       className="w-full rounded-2xl overflow-hidden select-none"
       style={{ aspectRatio: '4/3', position: 'relative' }}
     >
-      <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: '#0f0a1e' }}>
+      <div className="w-full h-full flex items-center justify-center bg-wash">
         <img
           src={img}
           alt={label}
@@ -33,10 +33,10 @@ function PhotoCard({ img, label }) {
       <div
         className="absolute bottom-0 left-0 right-0 px-5 py-4"
         style={{
-          background: 'linear-gradient(to top, rgba(10,10,15,0.85) 0%, transparent 100%)',
+          background: 'linear-gradient(to top, rgba(42,30,46,0.75) 0%, transparent 100%)',
         }}
       >
-        <p className="text-white font-semibold text-sm">{label}</p>
+        <p className="text-paper font-medium text-sm">{label}</p>
       </div>
     </div>
   )
@@ -52,9 +52,9 @@ export default function Branding() {
     <section id="branding" className="py-12 sm:py-16 md:py-20 px-4 sm:px-8">
       <div className="max-w-6xl mx-auto">
         <FadeIn>
-          <p className="text-violet-400 text-xs tracking-widest uppercase mb-2 font-semibold">Design</p>
-          <h2 className="text-white text-4xl font-bold mb-4">Branding & Visual Design</h2>
-          <p className="text-zinc-400 text-sm mb-10 max-w-md">
+          <p className="text-accent text-xs tracking-widest uppercase mb-2 font-medium">Design</p>
+          <h2 className="text-ink text-4xl font-semibold mb-4">Branding & Visual Design</h2>
+          <p className="text-muted text-sm mb-10 max-w-md">
             A collection of design work spanning brand identity, UI mockups, and visual content — crafted with Figma and Canva.
           </p>
         </FadeIn>
@@ -67,10 +67,10 @@ export default function Branding() {
 
           {/* Info */}
           <div className="flex flex-col gap-5 pt-4">
-            <p className="text-zinc-300 text-base leading-relaxed">
+            <p className="text-ink/80 text-base leading-relaxed">
               Beyond code, I bring ideas to life visually — from crafting cohesive brand identities to designing polished UI mockups and social media graphics.
             </p>
-            <p className="text-zinc-500 text-sm">
+            <p className="text-muted text-sm">
               Drag the top card to browse through the samples.
             </p>
             <div className="flex flex-wrap gap-2 mt-2">
@@ -79,9 +79,9 @@ export default function Branding() {
                   key={tool}
                   className="text-xs px-3 py-1 rounded-full"
                   style={{
-                    background: 'rgba(139,92,246,0.12)',
-                    border: '1px solid rgba(139,92,246,0.25)',
-                    color: '#c4b5fd',
+                    background: 'var(--wash)',
+                    border: '1px solid var(--line)',
+                    color: 'var(--accent)',
                   }}
                 >
                   {tool}

@@ -1,9 +1,8 @@
 import { Skeleton } from './ui/skeleton'
 
 const cardStyle = {
-  background: 'rgba(15,10,30,0.7)',
-  border: '1px solid rgba(139,92,246,0.15)',
-  backdropFilter: 'blur(8px)',
+  background: 'var(--paper)',
+  border: '1px solid var(--line)',
 }
 
 function SectionHeader() {
@@ -34,7 +33,7 @@ export function ProjectsSkeleton() {
                 <Skeleton className="h-3 w-full" />
                 <Skeleton className="h-3 w-4/5" />
               </div>
-              <div className="flex gap-1.5 pt-3 border-t border-violet-900/20">
+              <div className="flex gap-1.5 pt-3 border-t border-line">
                 <Skeleton className="h-5 w-14 rounded-full" />
                 <Skeleton className="h-5 w-20 rounded-full" />
                 <Skeleton className="h-5 w-16 rounded-full" />
@@ -71,7 +70,7 @@ export function ExperienceSkeleton() {
                   </div>
                 ))}
               </div>
-              <div className="flex gap-1.5 pt-4 border-t border-violet-900/20">
+              <div className="flex gap-1.5 pt-4 border-t border-line">
                 {Array.from({ length: i === 0 ? 5 : 3 }).map((_, k) => (
                   <Skeleton key={k} className="h-5 w-16 rounded-full" />
                 ))}
@@ -111,13 +110,35 @@ export function CertificatesSkeleton() {
     <section className="py-20 px-8">
       <div className="max-w-6xl mx-auto">
         <SectionHeader />
-        <div className="grid sm:grid-cols-2 gap-3">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <div key={i} className="flex items-start gap-3 rounded-xl px-5 py-4" style={cardStyle}>
-              <Skeleton className="h-3.5 w-3 shrink-0 rounded-full mt-0.5" />
-              <div className="flex flex-col gap-1.5 flex-1">
-                <Skeleton className="h-3.5" style={{ width: `${60 + (i % 4) * 10}%` }} />
-                {i < 5 && <Skeleton className="h-3 w-20" />}
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+          {[0, 1, 2].map(i => (
+            <div key={i} className="rounded-xl p-6 flex items-start gap-4" style={cardStyle}>
+              <Skeleton className="w-11 h-11 rounded-xl shrink-0" />
+              <div className="flex flex-col gap-2 flex-1">
+                <Skeleton className="h-2.5 w-16" />
+                <Skeleton className="h-4 w-40" />
+                <Skeleton className="h-3 w-28" />
+                <Skeleton className="h-5 w-20 rounded-md mt-1" />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex flex-col gap-8">
+          {[4, 3, 1].map((count, gi) => (
+            <div key={gi}>
+              <div className="flex items-center gap-2 mb-3">
+                <Skeleton className="h-3.5 w-3.5 rounded-full" />
+                <Skeleton className="h-3 w-32" />
+              </div>
+              <div className="grid sm:grid-cols-2 gap-2.5">
+                {Array.from({ length: count }).map((_, i) => (
+                  <div key={i} className="flex items-center gap-3 rounded-xl px-4 py-3.5" style={cardStyle}>
+                    <Skeleton className="h-3.5 w-3 shrink-0 rounded-full" />
+                    <Skeleton className="h-3.5" style={{ width: `${55 + (i % 3) * 12}%` }} />
+                  </div>
+                ))}
               </div>
             </div>
           ))}

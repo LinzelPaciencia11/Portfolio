@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 
-export default function SpotlightCard({ children, className = '', spotlightColor = 'rgba(139,92,246,0.25)' }) {
+export default function SpotlightCard({ children, className = '', spotlightColor = 'rgba(196,85,126,0.12)' }) {
   const cardRef = useRef(null)
   const [pos, setPos] = useState({ x: 0, y: 0 })
   const [opacity, setOpacity] = useState(0)
@@ -18,9 +18,8 @@ export default function SpotlightCard({ children, className = '', spotlightColor
       onMouseLeave={() => setOpacity(0)}
       className={`relative overflow-hidden rounded-xl ${className}`}
       style={{
-        background: 'rgba(15,10,30,0.7)',
-        border: '1px solid rgba(139,92,246,0.2)',
-        backdropFilter: 'blur(8px)',
+        background: 'var(--paper)',
+        border: '1px solid var(--line)',
       }}
     >
       {/* spotlight layer */}

@@ -2,9 +2,9 @@ import { cn } from '../../lib/utils'
 
 export function Badge({ className, variant = 'default', ...props }) {
   const variants = {
-    default: 'bg-zinc-800 text-zinc-300 border-zinc-700',
-    purple: 'bg-violet-950 text-violet-300 border-violet-800',
-    outline: 'bg-transparent text-zinc-400 border-zinc-700',
+    default: 'bg-wash text-muted border-line',
+    accent: 'bg-wash text-accent border-line',
+    outline: 'bg-transparent text-muted border-line',
   }
   return (
     <span

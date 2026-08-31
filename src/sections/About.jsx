@@ -1,7 +1,13 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView } from 'motion/react'
+import { Briefcase, GraduationCap, Quote as QuoteIcon } from 'lucide-react'
 import FadeIn from '../components/FadeIn'
-import profileImg from '../assets/sub-profile.jpg'
+import SpotlightCard from '../components/SpotlightCard'
+import GradientBorderCard from '../components/GradientBorderCard'
+import prototypingImg from '../assets/undraw-prototyping.svg'
+import codeReviewImg from '../assets/undraw-code-review.svg'
+import teamCollabImg from '../assets/undraw-team-collaboration.svg'
+import documentReviewImg from '../assets/undraw-document-review.svg'
 
 function Counter({ to }) {
   const ref = useRef(null)
@@ -22,87 +28,135 @@ function Counter({ to }) {
 }
 
 const stats = [
-  { value: 3, label: 'Projects Completed' },
-  { value: 4, label: 'Years of Study' },
+  { value: 3, label: 'Roles Held', Icon: Briefcase },
+  { value: 4, label: 'Years of Study', Icon: GraduationCap },
 ]
+
+function Stats() {
+  return (
+    <div className="grid grid-cols-2 gap-4">
+      {stats.map((s, i) => (
+        <motion.div
+          key={s.label}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 + i * 0.15, duration: 0.5 }}
+        >
+          <GradientBorderCard className="h-full" contentClassName="p-6 sm:p-8 flex items-center gap-4" duration={6}>
+            <div
+              className="flex items-center justify-center rounded-xl shrink-0"
+              style={{ width: 48, height: 48, background: 'var(--accent)' }}
+            >
+              <s.Icon size={22} color="var(--paper)" strokeWidth={2.25} />
+            </div>
+            <div>
+              <p className="text-ink font-semibold text-3xl leading-none">
+                <Counter to={s.value} />
+                <span className="text-accent">+</span>
+              </p>
+              <p className="text-muted text-sm mt-1.5 tracking-wide">{s.label}</p>
+            </div>
+          </GradientBorderCard>
+        </motion.div>
+      ))}
+    </div>
+  )
+}
+
+function Quote() {
+  return (
+    <div className="inline-flex items-center gap-3 px-5 py-3.5 rounded-2xl text-sm text-ink/80 italic bg-wash border border-line max-w-full">
+      <QuoteIcon size={16} className="text-accent shrink-0" fill="currentColor" strokeWidth={0} />
+      <span className="whitespace-normal sm:whitespace-nowrap">Working with heart, creating with mind.</span>
+      <QuoteIcon size={16} className="text-accent shrink-0 rotate-180" fill="currentColor" strokeWidth={0} />
+    </div>
+  )
+}
+
+const facets = [
+  {
+    img: prototypingImg,
+    title: 'Design & Prototyping',
+    desc: 'Wireframes, user flows, and high-fidelity UI in Figma.',
+  },
+  {
+    img: codeReviewImg,
+    title: 'Development',
+    desc: 'Full-stack builds in React, Laravel, TypeScript, and C#.',
+  },
+  {
+    img: teamCollabImg,
+    title: 'Team Collaboration',
+    desc: 'Cross-functional work with developers, designers, and PMs.',
+  },
+  {
+    img: documentReviewImg,
+    title: 'Docs & QA',
+    desc: 'Technical documentation and testing with Jest and Selenium.',
+  },
+]
+
+function FacetGrid() {
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
+      {facets.map((f, i) => (
+        <FadeIn key={f.title} delay={0.15 + i * 0.1} direction="up">
+          <SpotlightCard className="h-full p-5 flex flex-col items-center text-center gap-3">
+            <img src={f.img} alt="" className="h-20 w-full object-contain" />
+            <div>
+              <p className="text-ink text-sm font-semibold">{f.title}</p>
+              <p className="text-muted text-xs mt-1 leading-relaxed">{f.desc}</p>
+            </div>
+          </SpotlightCard>
+        </FadeIn>
+      ))}
+    </div>
+  )
+}
 
 export default function About() {
   return (
-    <section id="about" className="relative overflow-hidden min-h-[680px]">
+    <section id="about" className="px-4 sm:px-8 py-16 md:py-24">
+      <div className="max-w-6xl mx-auto">
 
-      {/* Photo — backgroundImage stays in style because it's a dynamic JS import */}
-      <motion.div
-        initial={{ opacity: 0, scale: 1.04 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.1, ease: 'easeOut' }}
-        className="absolute inset-0 bg-no-repeat bg-contain bg-right"
-        style={{ backgroundImage: `url(${profileImg})` }}
-      />
-
-      {/* Vignette frame — dark edges, transparent center over the photo */}
-      <div className="absolute inset-0" style={{
-        background: 'radial-gradient(ellipse 48% 62% at 76% 50%, transparent 20%, rgba(10,10,15,0.45) 45%, rgba(10,10,15,0.82) 65%, #0a0a0f 80%)'
-      }} />
-
-      {/* Left fade */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f] via-[rgba(10,10,15,0.6)] via-[18%] to-transparent to-[38%]" />
-
-      {/* Top fade */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] to-transparent to-[20%]" />
-
-      {/* Bottom fade */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-[rgba(10,10,15,0.7)] via-[15%] to-transparent to-[40%]" />
-
-      {/* Text content */}
-      <div className="relative z-10 flex flex-col justify-center h-full px-4 sm:px-8 md:pl-24 lg:pl-56 xl:pl-72 md:pr-12 py-14 w-full md:max-w-[70%] lg:max-w-[72%]">
+        {/* Text */}
         <FadeIn delay={0.1}>
-          <p className="text-violet-400 text-sm tracking-widest uppercase mb-3 font-semibold">About Me</p>
-          <h2 className="text-white font-bold text-4xl sm:text-5xl md:text-6xl lg:text-10xl mb-5 leading-tight">
-            Crafting Digital<br />
-            <span className="bg-gradient-to-r from-violet-400 to-sky-400 bg-clip-text text-transparent">
-              Experiences
-            </span>
+          <p className="text-accent text-sm tracking-widest uppercase mb-3 font-medium">About Me</p>
+          <h2
+            className="text-ink font-semibold mb-6 leading-tight whitespace-nowrap"
+            style={{ fontSize: 'clamp(1rem, 6.2vw, 3rem)' }}
+          >
+            Crafting Digital <span className="text-accent">Experiences</span>
           </h2>
         </FadeIn>
 
+        {/* Facet illustrations */}
+        <div className="mb-10">
+          <FacetGrid />
+        </div>
+
+        <FadeIn delay={0.15}>
+          <div className="flex justify-center mb-10">
+            <Quote />
+          </div>
+        </FadeIn>
+
         <FadeIn delay={0.2}>
-          <p className="text-zinc-300 text-lg leading-relaxed mb-3 max-w-[480px]">
-            I'm <span className="text-white font-semibold">Linzel Marie P. Paciencia</span>, a Cum Laude IT graduate
-            passionate about building modern, high-performance applications with clean, maintainable code.
+          <p className="text-ink/80 text-lg leading-relaxed mb-3 text-justify">
+            I'm <span className="text-ink font-semibold">Linzel Marie P. Paciencia</span>, a Cum Laude IT graduate who
+            takes products from wireframe to production — designing interfaces in Figma, then building them out with
+            React, React Native, Laravel, and TypeScript.
           </p>
-          <p className="text-zinc-500 text-base leading-relaxed mb-7 max-w-[460px]">
-            From real-time analytics pipelines with Supabase Edge Functions to IoT monitoring systems —
-            I bring both technical skill and project leadership to every team I join.
+          <p className="text-muted text-base leading-relaxed mb-7 text-justify">
+            From real-time data pipelines to a capstone IoT system led from concept to deployment as project manager
+            and UI/UX designer, I bring both technical skill and design sense to every team I join — trusted by
+            employers and clients to take ideas from concept to shipped product.
           </p>
         </FadeIn>
 
         <FadeIn delay={0.3}>
-          <div className="flex gap-8 md:gap-14 mb-7">
-            {stats.map((s, i) => (
-              <motion.div
-                key={s.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 + i * 0.15, duration: 0.5 }}
-              >
-                <p className="text-white font-bold text-5xl leading-none">
-                  <Counter to={s.value} />
-                  <span className="text-violet-400">+</span>
-                </p>
-                <p className="text-zinc-500 text-xs mt-2 tracking-wide">{s.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.45}>
-          <div className="inline-flex items-center gap-3 px-5 py-3 rounded-xl text-sm text-zinc-400 italic bg-violet-500/[.07] border border-violet-500/[.18]">
-            <span className="text-violet-500 not-italic text-lg">"</span>
-            Working with heart, creating with mind.
-            <span className="text-violet-500 not-italic text-lg">"</span>
-          </div>
+          <Stats />
         </FadeIn>
       </div>
     </section>
