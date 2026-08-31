@@ -52,7 +52,7 @@ export default function Nav() {
         style={{
           backdropFilter: scrolled || open ? 'blur(12px)' : 'none',
           WebkitBackdropFilter: scrolled || open ? 'blur(12px)' : 'none',
-          background: scrolled || open ? 'rgba(252, 250, 251, 0.9)' : 'transparent',
+          background: scrolled || open ? 'var(--nav-glass-bg)' : 'transparent',
           transition: 'background 300ms ease',
         }}
       >

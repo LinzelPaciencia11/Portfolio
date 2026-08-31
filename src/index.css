@@ -19,10 +19,39 @@
   --accent: #C4557E;
   --line: #E7DBE3;
 
+  /* translucent surfaces used by the nav, dock, and Hero's glass card */
+  --nav-glass-bg: rgba(252, 250, 251, 0.9);
+  --dock-bg: rgba(244, 236, 241, 0.6);
+  --card-glass-bg: rgba(252, 250, 251, 0.35);
+  --card-glass-border: rgba(231, 219, 227, 0.55);
+
   font: 16px/160% 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color-scheme: light;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paper: #17121A;
+    --color-wash: #221A26;
+    --color-ink: #F3EDF1;
+    --color-muted: #A8969F;
+    --color-accent: #E28AAA;
+    --color-line: #362B3A;
+
+    --paper: #17121A;
+    --wash: #221A26;
+    --ink: #F3EDF1;
+    --muted: #A8969F;
+    --accent: #E28AAA;
+    --line: #362B3A;
+
+    --nav-glass-bg: rgba(23, 18, 26, 0.85);
+    --dock-bg: rgba(255, 255, 255, 0.06);
+    --card-glass-bg: rgba(34, 26, 38, 0.45);
+    --card-glass-border: rgba(255, 255, 255, 0.08);
+  }
 }
 
 body {

@@ -67,10 +67,10 @@ function ProfileCard() {
         transition={{ duration: 0.25, ease: 'easeOut' }}
         className="relative w-full rounded-2xl overflow-hidden group cursor-pointer"
         style={{
-          background: 'rgba(252,250,251,0.35)',
+          background: 'var(--card-glass-bg)',
           backdropFilter: 'blur(20px) saturate(160%)',
           WebkitBackdropFilter: 'blur(20px) saturate(160%)',
-          border: '1px solid rgba(231,219,227,0.55)',
+          border: '1px solid var(--card-glass-border)',
           boxShadow: '0 4px 24px rgba(42,30,46,0.08), 0 18px 32px -12px rgba(196,85,126,0.28)',
           zIndex: 1,
         }}
@@ -136,8 +136,8 @@ export default function Hero() {
           <div className="mb-6 -ml-1">
             <DepthText
               text="Linzel Marie"
-              faceColor="#2A1E2E"
-              depthColor="#C4557E"
+              faceColor="var(--ink)"
+              depthColor="var(--accent)"
               layers={8}
               depth={0.9}
               tilt={2.5}

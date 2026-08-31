@@ -56,7 +56,7 @@ export default function Dock({ items, baseSize = 36, magnification = 52, distanc
       onMouseMove={(e) => mouseX.set(e.clientX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={`flex items-center gap-2 rounded-full px-3 py-2 ${className}`}
-      style={{ background: 'rgba(244, 236, 241, 0.6)', border: '1px solid var(--line)' }}
+      style={{ background: 'var(--dock-bg)', border: '1px solid var(--line)' }}
     >
       {items.map((item) => (
         <DockItem
