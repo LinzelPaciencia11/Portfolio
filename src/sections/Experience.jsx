@@ -8,7 +8,7 @@ const experiences = [
   {
     company: 'Drafturas',
     role: 'Software Developer',
-    period: 'Jun 2026 – Present',
+    period: 'June 2026 – August 2026',
     type: 'Part-time',
     logo: null,
     bullets: [
@@ -23,7 +23,7 @@ const experiences = [
   {
     company: 'Game MyBiz',
     role: 'UI/UX Designer',
-    period: 'Jul 2026 – Aug 2026',
+    period: 'July 2026 – September 2026',
     type: 'Project-based, Remote',
     logo: null,
     bullets: [
@@ -38,7 +38,7 @@ const experiences = [
   {
     company: 'Sprobe Inc.',
     role: 'Full Stack Developer Intern',
-    period: 'Feb 2026 – May 2026',
+    period: 'February 2026 – May 2026',
     type: 'Internship',
     logo: sprobeImg,
     bullets: [
