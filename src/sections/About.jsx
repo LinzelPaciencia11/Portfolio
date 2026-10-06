@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import { motion, useInView } from 'motion/react'
 import { Briefcase, GraduationCap, Quote as QuoteIcon } from 'lucide-react'
 import FadeIn from '../components/FadeIn'
+import { experiences } from './Experience'
 import SpotlightCard from '../components/SpotlightCard'
 import GradientBorderCard from '../components/GradientBorderCard'
 import prototypingImg from '../assets/undraw-prototyping.svg'
@@ -28,7 +29,7 @@ function Counter({ to }) {
 }
 
 const stats = [
-  { value: 3, label: 'Roles Held', Icon: Briefcase },
+  { value: experiences.length, label: 'Roles Held', Icon: Briefcase },
   { value: 4, label: 'Years of Study', Icon: GraduationCap },
 ]
 

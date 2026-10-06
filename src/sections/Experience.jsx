@@ -4,7 +4,20 @@ import FadeIn from '../components/FadeIn'
 import SpotlightCard from '../components/SpotlightCard'
 import sprobeImg from '../assets/sprobe.jpg'
 
-const experiences = [
+export const experiences = [
+  {
+    company: 'Renté by Kisha',
+    role: 'Developer',
+    period: 'October 2026',
+    type: 'Gig',
+    logo: null,
+    bullets: [
+      'Built and shipped a full dress-rental storefront in React 19 and TypeScript: dress browsing, availability calendar, cart, checkout with GCash receipt upload, fitting bookings, wishlist and live rental status.',
+      'Built an admin dashboard for managing dresses, rentals, fittings, user roles and site content (size guide, how-it-works, hero dresses), with role changes restricted to admins through a checked database function.',
+      'Secured customer data with private Supabase Storage buckets and short-lived signed links for receipts, so only the owner and admins can open them.',
+    ],
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'Vitest'],
+  },
   {
     company: 'Drafturas',
     role: 'Software Developer',
@@ -98,6 +111,7 @@ export default function Experience() {
                 </span>
               </div>
 
+              {exp.bullets.length > 0 && (
               <ul className="flex flex-col gap-2 mb-5">
                 {exp.bullets.map((b, j) => (
                   <motion.li
@@ -113,10 +127,13 @@ export default function Experience() {
                   </motion.li>
                 ))}
               </ul>
+              )}
 
+              {exp.tags.length > 0 && (
               <div className="mt-auto flex flex-wrap gap-1.5 pt-4 border-t border-line">
                 {exp.tags.map(tag => <Badge key={tag}>{tag}</Badge>)}
               </div>
+              )}
             </SpotlightCard>
             </motion.div>
           ))}
