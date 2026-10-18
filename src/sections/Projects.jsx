@@ -82,13 +82,13 @@ function ProjectGrid({ projects }) {
         >
           {/* Image / placeholder at top */}
           {p.images ? (
-            <div className="w-full h-44 overflow-hidden flex gap-1 bg-wash">
+            <div className="w-full h-44 overflow-x-auto sm:overflow-hidden flex gap-1 bg-wash snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {p.images.map((src, n) => (
                 <img
                   key={n}
                   src={src}
                   alt={`${p.name} screen ${n + 1}`}
-                  className="w-1/3 h-full object-cover object-top" loading="lazy"
+                  className="w-[45%] sm:w-1/3 shrink-0 h-full object-cover object-top snap-start" loading="lazy"
                 />
               ))}
             </div>
